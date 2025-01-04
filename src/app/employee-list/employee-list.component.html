@@ -1,0 +1,29 @@
+<div class="container mt-4">
+<h2>Employee List</h2>
+<button class="btn btn-primary mb-3" routerLink="/employees/new">Add Employee</button>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Project ID</th>
+            <th>Employee ID</th>
+            <th>Roles</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let employee of employees">
+            <td>{{employee.emProjectId}}</td>
+            <td>{{employee.projectId}}</td>
+            <td>{{employee.empId}}</td>
+            <td>{{employee.role}}</td>
+            <td>
+                <button class="btn btn-warning btn-sm me-2" (click)="editEmployee(employee)">Edit</button>
+                <button class="btm btn-danger btn-sm" (click)="deleteEmployee(employee.emProjectId)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+
+</table>
+</div>

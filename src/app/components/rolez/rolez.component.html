@@ -1,0 +1,32 @@
+<p>rolez works!</p>
+<app-root></app-root>
+
+<div class="row">
+ <div class="col-12">
+<table class="table table-bondered">
+<thead>
+    <tr>
+        <th>Sr No</th>
+        <th>Name</th>
+        <th>Project Name</th>
+        <th>Role</th>
+    </tr>
+</thead>
+
+<tbody>
+    @if(isLoading) {
+        <div class="text-center">
+            <div class="spinner-border"></div>
+          </div>
+    } @else {
+        <tr *ngFor="let data of roleList; let sr = index">
+            <td>{{sr+1}}</td>
+            <td>{{data.fullName}}</td>
+            <td>{{data.projectName}}</td>
+            <td>{{data.role}}</td>
+        </tr>
+    }
+</tbody>
+</table>
+ </div>
+</div>
