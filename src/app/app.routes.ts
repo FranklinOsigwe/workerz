@@ -19,7 +19,7 @@ export const routes: Routes = [
     path: '',
     component: LayoutComponent,
     children: [
-      { path: '', redirectTo: 'home', pathMatch: 'full' }, // Redirect to 'home' by default
+      // { path: '', redirectTo: 'home', pathMatch: 'full' }, // Redirect to 'home' by default
       { path: 'about-us', component: AboutUsComponent },
       { path: 'home', component: HomeComponent },
       { path: 'contact-us', component: ContactUsComponent },

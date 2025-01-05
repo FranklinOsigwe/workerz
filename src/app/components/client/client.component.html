@@ -21,7 +21,7 @@
           <tbody>
             @for(item of clientList; track $index) {
             <tr>
-              <td>{{ $index + 1 }}</td>
+              <td>{{$index+1}}</td>
               <td>{{ item.companyName | uppercase }}</td>
               <td>{{ item.contactPersonName }}</td>
               <td>{{ item.contactNo }}</td>
