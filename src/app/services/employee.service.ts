@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Client, IDepartment, IDepartmentData, ProjectEmployee } from '../models/employee.model';
+import { Client, EmployeeTest, IDepartment, IDepartmentData, ProjectEmployee } from '../models/employee.model';
 
 
 @Injectable({
@@ -45,6 +45,11 @@ private baseUrl = 'https://freeapi.miniprojectideas.com/api/ClientStrive';
   addUpdate(obj: Client): Observable<IDepartmentData> {
     return this.http.post<IDepartmentData>(`${this.baseUrl}/AddUpdateClient`, obj);
   }
+
+  // addEmployeeUpdate(obj: EmployeeTest): Observable<IDepartmentData> {
+  //   return this.http.post<IDepartmentData>(`${this.baseUrl}/AddUpdateClientProject`, obj);
+  // }
+
   
 
  deleteClientById(id: number):Observable<IDepartmentData> {

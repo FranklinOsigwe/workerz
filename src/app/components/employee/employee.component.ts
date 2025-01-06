@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { EmployeeService } from '../../services/employee.service';
-import { Client, ClientProject, Employee } from '../../models/employee.model';
+import { Client, ClientProject, Employee, EmployeeTest } from '../../models/employee.model';
 import { AsyncPipe, DatePipe } from '@angular/common';
 import { AlertComponent } from "../../reusableComponents/alert/alert.component";
 
@@ -21,7 +21,7 @@ expectedEndDate: new FormControl(''),
 leadByEmId: new FormControl(''),
 completedDate: new FormControl(''),
 contactPerson: new FormControl(''),
-contactPersonContactNo: new FormControl(''),
+contactPersonContactNo: new FormControl(''), 
 totalEmpWorking: new FormControl(''),
 projectCost: new FormControl(''),
 projectDetails: new FormControl(''),
@@ -29,10 +29,13 @@ contactPersonEmailId: new FormControl(''),
 clientId: new FormControl(''),
 })
 
-clientSrv = inject(EmployeeService)
+// clientSrv = inject(EmployeeService)
+
 employeeList: Employee[] = []
 clientList: Client[] = []
 projectList = signal<ClientProject[]>([]);
+EmployeeObj: EmployeeTest = new EmployeeTest();
+employeeSrv = inject(EmployeeService)
 
 ngOnInit(): void {
   this.getAllClient();
@@ -41,32 +44,44 @@ ngOnInit(): void {
 }
 
 getAllEmployee() {
-  this.clientSrv.getAllEmployee().subscribe((res: any) => {
+  this.employeeSrv.getAllEmployee().subscribe((res: any) => {
     this.employeeList= res.data;
   })
 }
 
 getAllClientProject() {
-  this.clientSrv.getAllClientProjects().subscribe((res: any) => {
+  this.employeeSrv.getAllClientProjects().subscribe((res: any) => {
     this.projectList.set(res.data);
   })
 }
 
 getAllClient() {
-  this.clientSrv.getAllClient().subscribe((res: any) => {
+  this.employeeSrv.getAllClient().subscribe((res: any) => {
     this.clientList= res.data;
   })
 }
 
-onSaveProject(){
- const formValue = this.projectForm.value
- this.clientSrv.addClientProjectUpdate(formValue).subscribe((res: any ) => {
-  if(res.result) {
-    alert('Successfully created')
-  }else {
-    alert(res.message)
-  }
- })
-}
+onSaveEmployee(){
+  const formValue = this.projectForm.value
+  // this.employeeSrv.addClientProjectUpdate(this.EmployeeObj).subscribe((res: any) => {
+  this.employeeSrv.addClientProjectUpdate(formValue).subscribe((res: any) => {
+    if(res.result){
+      alert('Successfully created')
+      this.getAllClient();
+      this.EmployeeObj = new EmployeeTest();
+    } else {
+      alert(res.message)
+    }
+  })}
+// onSaveProject(){
+//  const formValue = this.projectForm.value
+//  this.clientSrv.addClientProjectUpdate(formValue).subscribe((res: any ) => {
+//   if(res.result) {
+//     alert('Successfully created')
+//   }else {
+//     alert(res.message)
+//   }
+//  })
+// }
 
 }

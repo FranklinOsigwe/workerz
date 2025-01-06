@@ -66,6 +66,38 @@ export class Client {
   }
 }
 
+export class EmployeeTest {
+  clientProjectId:        number;
+  projectName:            string;
+  startDate:              Date;
+  expectedEndDate:        Date;
+  leadByEmpId:            any;
+  completedDate:          string;
+  contactPerson:          string;
+  contactPersonContactNo: string;
+  totalEmpWorking:        number;
+  projectCost:            number;
+  projectDetails:         string;
+  contactPersonEmailId:   string;
+  clientId:               number;
+
+  constructor(){
+    this.clientProjectId = 0;
+    this.projectName = '';
+    this.startDate = new Date();
+    this.expectedEndDate = new Date();
+    this.leadByEmpId = ''
+    this.completedDate = '';
+    this.contactPerson = '';
+    this.contactPersonContactNo = '';
+    this.totalEmpWorking = 0;
+    this.projectCost = 0;
+    this.projectDetails = '';
+    this.contactPersonEmailId = '';
+    this.clientId = 0;
+  }
+}
+
 export interface Employee {
   empName: string;
   emId: string;
