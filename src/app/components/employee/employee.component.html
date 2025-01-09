@@ -64,10 +64,10 @@
               <label for="">Excepted End Date</label>
               <input type="date" formControlName="expectedEndDate" class="form-control" />
             </div>
-            <div class="col-6">
+            <!-- <div class="col-6">
               <label for="">Completed Date</label>
               <input type="date" formControlName="completedDate" class="form-control" />
-            </div>
+            </div> -->
             <div class="col-6">
               <label for="">Contact Name</label>
               <input type="text" formControlName="contactPerson" class="form-control" />
@@ -81,10 +81,10 @@
               <label for="">Contact Email</label>
               <input type="text" formControlName="contactPersonEmailId" class="form-control" />
             </div>
-            <div class="col-6">
+            <!-- <div class="col-6">
               <label for="">Project Cost</label>
               <input type="text" formControlName="projectcost" class="form-control" />
-            </div>
+            </div> -->
 
             <div class="col-6">
               <label for="">Project Description</label>
@@ -106,15 +106,15 @@
             </div>
             <div class="col-6">
               <label for="">Project Costing</label>
-              <input type="text" class="form-control" />
+              <input type="text" class="form-control"  formControlName="projectCost"/>
             </div>
 
             <div class="col-6">
               <label form=""> Lead by </label>
-              <select class="form-control" formControlName="leadByEmId">
+              <select class="form-control" formControlName="leadByEmpId">
                 <option value="">Select Employee</option>
                 @for(item of employeeList;track $index) {
-                    <option [value]="item.emId">{{item.empName}} - {{item.empCode}}</option>
+                    <option [value]="item.empId">{{item.empName}} - {{item.empCode}}</option>
                 }
               </select>
             </div>

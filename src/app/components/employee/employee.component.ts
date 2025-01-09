@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { EmployeeService } from '../../services/employee.service';
-import { Client, ClientProject, Employee, EmployeeTest } from '../../models/employee.model';
+import { Client, ClientProject, Employee } from '../../models/employee.model';
 import { AsyncPipe, DatePipe } from '@angular/common';
 import { AlertComponent } from "../../reusableComponents/alert/alert.component";
 
@@ -18,7 +18,7 @@ clientProjectId: new FormControl(0),
 projectName: new FormControl('', [Validators.required, Validators.minLength(4)]),
 startDate: new FormControl(''),
 expectedEndDate: new FormControl(''),
-leadByEmId: new FormControl(''),
+leadByEmpId: new FormControl(''),
 completedDate: new FormControl(''),
 contactPerson: new FormControl(''),
 contactPersonContactNo: new FormControl(''), 
@@ -34,9 +34,9 @@ clientId: new FormControl(''),
 employeeList: Employee[] = []
 clientList: Client[] = []
 projectList = signal<ClientProject[]>([]);
-EmployeeObj: EmployeeTest = new EmployeeTest();
+// EmployeeObj: EmployeeTest = new EmployeeTest();
 employeeSrv = inject(EmployeeService)
-
+// clientSrv: Inject(ClientService)
 ngOnInit(): void {
   this.getAllClient();
   this.getAllEmployee();
@@ -48,6 +48,11 @@ getAllEmployee() {
     this.employeeList= res.data;
   })
 }
+getAllClient() {
+  this.employeeSrv.getAllClient().subscribe((res: any) => {
+    this.clientList= res.data;
+  })
+}
 
 getAllClientProject() {
   this.employeeSrv.getAllClientProjects().subscribe((res: any) => {
@@ -55,20 +60,16 @@ getAllClientProject() {
   })
 }
 
-getAllClient() {
-  this.employeeSrv.getAllClient().subscribe((res: any) => {
-    this.clientList= res.data;
-  })
-}
 
 onSaveEmployee(){
-  const formValue = this.projectForm.value
+  const formValue = this.projectForm.value;
+  debugger;
   // this.employeeSrv.addClientProjectUpdate(this.EmployeeObj).subscribe((res: any) => {
   this.employeeSrv.addClientProjectUpdate(formValue).subscribe((res: any) => {
     if(res.result){
       alert('Successfully created')
       this.getAllClient();
-      this.EmployeeObj = new EmployeeTest();
+      // this.EmployeeObj = new EmployeeTest();
     } else {
       alert(res.message)
     }
