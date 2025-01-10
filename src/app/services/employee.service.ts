@@ -73,6 +73,8 @@ private baseUrl = 'https://freeapi.miniprojectideas.com/api/ClientStrive';
   getAllUser() {
     return this.http.get("https://jsonplaceholder.typicode.com/users")
   }
+
+  
 }
 
 
