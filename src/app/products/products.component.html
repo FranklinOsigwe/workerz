@@ -1,0 +1,81 @@
+<p>products works!</p>
+<div>
+    <div>
+        
+            <div  class="row">
+            <div class="col-md-3">
+                <label for="category" >Category</label>
+                <input type="text" [(ngModel)]="categoryName" class="form-control"/>
+            </div>
+            <div class="col-md-3">
+                <label for="category">Product Name</label>
+                <input type="text" [(ngModel)]="productsName" class="form-control"/>
+            </div>
+            <div class="col-md-3">
+                <label for="category">Product ID</label>
+                <input type="text" [(ngModel)]="productsId"class="form-control"/>
+            </div>
+            <div class="col-md-2 align-self-end">
+                <button type="button" (click)="onSearch()" class="btn btn-primary">Search</button>
+            </div>
+
+            <div class="col-2">
+            <select [(ngModel)]="pageSize" class="form-control" (change)="onPageSizeChange($event)">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+
+            </select>
+
+            </div>
+            </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th (click)="onSort('productId')">Product ID</th>
+                        <th (click)="onSort('productsName')">Product Name</th>
+                        <th (click)="onSort('shortName')">shortName</th>
+                        <th (click)="onSort('category')">Category</th>
+                        <th (click)="onSort('price')">Category</th>
+                        <th>Quantity</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let product of productList">
+                        <td>{{product.productId}}</td>
+                        <td>{{product.shortName}}</td>
+                        <td>{{product.category}}</td>
+                        <td>{{product.price}}</td>
+                        <td>{{product.quantity}}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary" (click)="onEdit(product)">Edit</button>
+                            <button type="button" class="btn btn-danger" (click)="onDelete(product.productId)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <nav>
+                <ul class="pagination">
+                    <li class="page-item" [class.disabled]="pageNumber === 1">
+                        <a class="page-link" (click)="onPageChange(pageNumber - 1)">Previous</a>
+                    </li>
+              
+                    <li class="page-item" [class.active]="page === pageNumber" *ngFor="let page of getPageNumber()">
+                        <a class="page-link" (click)="onPageChange(page)">{{page}}</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" [class.disabled]="pageNumber === getValue()" (click)="onPageChange(pageNumber + 1)">Next</a>
+                    </li>
+             </ul>   
+            </nav>
+        </div>
+
+    </div>
+</div>

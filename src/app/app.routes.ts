@@ -11,6 +11,7 @@ import { EmployeeComponent } from './components/employee/employee.component';
 import { ClientComponent } from './components/client/client.component';
 import { LoginComponent } from './components/login/login.component';
 import { LayoutComponent } from './layout/layout.component';
+import { ProductsComponent } from './products/products.component';
 
 export const routes: Routes = [
   {path:'', redirectTo: 'login', pathMatch: 'full'},
@@ -26,6 +27,7 @@ export const routes: Routes = [
       { path: 'designation', component: DesignationComponent },
       { path: 'employee', component: EmployeeComponent },
       { path: 'client', component: ClientComponent },
+      { path: 'products', component:ProductsComponent },
     ],
   },
   { path: '**', redirectTo: 'home', pathMatch: 'full' }, // Wildcard route to handle undefined paths
